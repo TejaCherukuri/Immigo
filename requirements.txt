@@ -1,0 +1,9 @@
+requests
+langchain
+langchain-community
+langchain-chroma
+langchain-huggingface
+bs4
+PyMuPDF
+chromadb
+sentence-transformers
