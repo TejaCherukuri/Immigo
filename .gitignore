@@ -4,3 +4,5 @@
 resources/
 crawler.py
 main.py
+logs/
+.DS_Store
