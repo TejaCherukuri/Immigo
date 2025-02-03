@@ -7,3 +7,4 @@ bs4
 PyMuPDF
 chromadb
 sentence-transformers
+langchain-groq
