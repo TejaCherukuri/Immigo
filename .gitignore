@@ -1,8 +1,13 @@
 *__pycache__
-*db*
+*db
 *venv*
 resources/
 crawler.py
-main.py
 logs/
 .DS_Store
+chunked_data*
+rag.py
+indexing.py
+test*.py
+.env
+

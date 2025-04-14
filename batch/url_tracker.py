@@ -42,7 +42,10 @@ class URLTracker:
             "/newsroom/all-news/",
             "/newsroom/stakeholder-messages/",
             "/newsroom/news-releases/",
-            "/newsroom/alerts/"
+            "/newsroom/alerts/",
+            "/news/releases/",
+            "/newsroom/local-media-release/",
+            "/newsroom/national-media-release"
         }
 
     def get_urls_from_page(self, url: str) -> Set[str]:
@@ -151,6 +154,26 @@ class URLTrackerFactory:
         self.file_path = os.path.join(self.root_dir, "resources/uscis.txt")
         self.new_file_path = os.path.join(self.root_dir, "resources/uscis_untracked.txt")
         return URLTracker(self.base_url, self.page_urls, self.file_path, self.new_file_path)
+    
+    def create_ice_tracker(self) -> URLTracker:
+        """Creates a URLTracker for USCIS with its specific configuration."""
+        self.base_url = "https://www.ice.gov"
+        self.page_urls = [
+            "https://www.ice.gov/newsroom"
+        ]
+        self.file_path = os.path.join(self.root_dir, "resources/ice.txt")
+        self.new_file_path = os.path.join(self.root_dir, "resources/ice_untracked.txt")
+        return URLTracker(self.base_url, self.page_urls, self.file_path, self.new_file_path) 
+    
+    def create_cbp_tracker(self) -> URLTracker:
+        """Creates a URLTracker for USCIS with its specific configuration."""
+        self.base_url = "https://www.cbp.gov"
+        self.page_urls = [
+            "https://www.cbp.gov/newsroom"
+        ]
+        self.file_path = os.path.join(self.root_dir, "resources/cbp.txt")
+        self.new_file_path = os.path.join(self.root_dir, "resources/cbp_untracked.txt")
+        return URLTracker(self.base_url, self.page_urls, self.file_path, self.new_file_path) 
 
 
 # Main function to start the tracking process

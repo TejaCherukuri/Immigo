@@ -1,29 +1,40 @@
-from src.scraper import ScraperFactory
-from utils import load_urls, clean_text
-from src.database import ChromaDBHandler
+# app.py
+import streamlit as st
+import requests
 
-def process_urls():
-    """Fetches data from URLs and stores it in ChromaDB."""
-    # urls = load_urls()
-    urls = ['https://www.uscis.gov/forms/all-forms', 'https://www.uscis.gov/sites/default/files/document/legal-docs/2013-1231_OLF_Exemption_PM_Effective.pdf']
-    chroma_db = ChromaDBHandler()
+st.set_page_config(page_title="Immigo", layout="wide")
+st.title("Immigo")
+st.text("I am your amigo built to clarify any immigration questions. Shoot me!")
 
-    for url in urls:
-        file_type = "pdf" if url.endswith(".pdf") else "web"
-        scraper = ScraperFactory.get_scraper(file_type)
+# Initialize chat session
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-        try:
-            documents = scraper.scrape(url)
+# Display previous chat messages
+for role, message in st.session_state.chat_history:
+    with st.chat_message(role):
+        st.markdown(message)
 
-            for doc in documents:
-                doc.page_content = clean_text(doc.page_content)
-                print("===============")
-                print(doc.page_content[:500])
-            
-            chroma_db.add_documents(documents)
-            print(f"Successfully added {len(documents)} document(s) from {url}")
-        except Exception as e:
-            print(f"Failed to process {url}: {str(e)}")
+# Chat Interface
+user_input = st.chat_input("Ask a question about Immigration System")
 
-if __name__ == "__main__":
-    process_urls()
+if user_input:
+    with st.chat_message("user"):
+        st.markdown(user_input)
+
+    # Call the API
+    try:
+        response = requests.post(
+            "http://localhost:8000/query",  # update port if different
+            json={"user_query": user_input}
+        )
+        data = response.json()
+        assistant_reply = data.get("response", "Something went wrong.")
+    except Exception as e:
+        assistant_reply = f"Error: {e}"
+
+    with st.chat_message("assistant"):
+        st.markdown(assistant_reply)
+
+    st.session_state.chat_history.append(("user", user_input))
+    st.session_state.chat_history.append(("assistant", assistant_reply))

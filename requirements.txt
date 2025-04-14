@@ -8,3 +8,6 @@ PyMuPDF
 chromadb
 sentence-transformers
 langchain-groq
+qdrant-client
+langchain-qdrant
+fastembed

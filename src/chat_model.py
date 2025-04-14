@@ -19,7 +19,7 @@ class ChatModel:
         The constructor sets up the model configuration, including:
         - `temperature`: Controls the randomness of the model's responses. Lower values (e.g., 0) make the output more deterministic.
         - `api_key`: The API key required to authenticate requests to the Groq model, fetched from the environment variables.
-        - `model`: The specific Groq model to use. In this case, it uses the "deepseek-r1-distill-llama-70b" model.
+        - `model`: The specific Groq model to use. In this case, it uses the "llama3-70b-8192" model.
 
         The API key is fetched securely from the environment variables, ensuring that sensitive information is not hardcoded.
 

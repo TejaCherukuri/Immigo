@@ -17,6 +17,11 @@ def remove_duplicates_and_filter(file_path, dest_file_path):
             "chinese", "spanish", "tagalog", "vietnamese", "amharic", "arabic",
             "hindi", "creole", "farsi", "french", "polish", "punjabi", "russian",
             "somali", "urdu", "portugese", "portuguese", "kor", "viet", "arab", 
+            "armenian", "indonesian", "FWVP", "FS_FRE", "FS_RUS", "FS_SPA", "FS_TAG",
+            "Asilados-Refugiados", "_SPA", "_SP", "_ESP", "_CHI", "_CRE", "_POL", "_PTB",
+            "_UAC", "la_Milicia", "_Spa", "_Spa2", "guides/", "fact-sheets/", "policy-manual-afm/",
+            "web-content/", "_AR", "_TUR", "_CH", "_DAR", "_FR", "_HC", "_PSH", "_PT", "_RU", "_SO",
+            "_VI", "_ES", "document/data/",
             "nepali", "/contracts", "foia", "posters/", "outreach-engagements/", 
             "website-metrics/", "outreach/", "save/", "lesson-plans/", "memos/", 
             "presentations/", "notices/", "brochures/", "flash-cards/",
@@ -53,7 +58,7 @@ def main():
     """Main function to process the file."""
     root_dir = os.path.dirname(os.path.dirname(__file__))
     src_file_path = os.path.join(root_dir, "resources/uscis.txt")
-    dest_file_path = os.path.join(root_dir, "resources/uscis_filtered.txt")
+    dest_file_path = os.path.join(root_dir, "resources/uscis.txt")
     remove_duplicates_and_filter(src_file_path, dest_file_path)
 
 if __name__ == "__main__":
